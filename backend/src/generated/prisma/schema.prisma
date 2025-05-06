@@ -33,9 +33,9 @@ model Course {
 model CourseStudent {
   id        Int      @id @default(autoincrement())
   studentId Int      @map("student_id")
-  student   Student  @relation(fields: [studentId], references: [id])
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
   courseId  Int      @map("course_id")
-  course    Course   @relation(fields: [courseId], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) @map("created_at")
 
   @@unique([studentId, courseId])

@@ -1,8 +1,9 @@
-import { BadRequestError, ValidationError } from "../errors/customErrors.js";
+import { BadRequestError, NotFoundError, ValidationError } from "../errors/customErrors.js";
 
 const defaultStatusCodes = {
   GET: 200,
   POST: 201,
+  DELETE: 204,
 };
 
 export const handleRequest = (callback) => async (req, res) => {
@@ -15,7 +16,8 @@ export const handleRequest = (callback) => async (req, res) => {
     let statusCode = 500;
 
     if (error instanceof BadRequestError || error instanceof ValidationError) statusCode = 400;
+    if (error instanceof NotFoundError) statusCode = 404;
 
-    res.status(statusCode).send(error.message);
+    res.status(statusCode).json({ error: error.message });
   }
 };

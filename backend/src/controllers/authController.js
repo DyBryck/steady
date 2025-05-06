@@ -9,7 +9,7 @@ export const register = async (req) => {
 
   const studentCreated = await studentService.createStudent(body);
 
-  return { message: "Étudiant inscrit avec succès", studentCreated };
+  return { message: "Inscription réussie", studentCreated };
 };
 
 export const login = async (req) => {

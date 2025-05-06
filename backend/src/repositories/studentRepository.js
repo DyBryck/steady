@@ -1,3 +1,4 @@
+import { BadRequestError } from "../errors/customErrors.js";
 import { PrismaClient } from "../generated/prisma/client.js";
 
 const prisma = new PrismaClient();
@@ -8,9 +9,7 @@ export const createStudent = async (data) => {
       data,
     });
   } catch (error) {
-    if (error.message.match(/Argument `[a-zA-Z]+` is missing./)) throw new Error(error.message);
-    else if (error.message.match(/Unique constraint failed/)) throw new Error(error.message);
-    else throw new Error(error.message);
+    if (error.code === "P2002") throw new BadRequestError("Cet email est déjà pris.");
   }
 };
 
@@ -18,6 +17,14 @@ export const getStudentByEmail = async (email) => {
   return await prisma.student.findUniqueOrThrow({
     where: {
       email,
+    },
+  });
+};
+
+export const deleteStudent = async (id) => {
+  return await prisma.student.delete({
+    where: {
+      id,
     },
   });
 };

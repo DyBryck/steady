@@ -18,3 +18,10 @@ export class Unauthorized extends Error {
     this.name = "Unauthorized";
   }
 }
+
+export class NotFoundError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "NotFound";
+  }
+}

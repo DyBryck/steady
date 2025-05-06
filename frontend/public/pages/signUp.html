@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <title>Steddy - Inscription</title>
+  </head>
+  <body>
+    <form id="signUpForm">
+      <label for="firstName" class="visually-hidden">Prénom</label>
+      <input
+        id="firstName"
+        type="text"
+        name="firstName"
+        placeholder="Prénom"
+        autocomplete="given-name"
+        required
+      />
+      <label for="lastName" class="visually-hidden">Nom</label>
+      <input
+        id="lastName"
+        type="text"
+        name="lastName"
+        placeholder="Nom"
+        autocomplete="family-name"
+        required
+      />
+      <label for="email" class="visually-hidden">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        placeholder="Email"
+        autocomplete="email"
+        required
+      />
+      <label for="password" class="visually-hidden">Mot de passe</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        placeholder="Mot de passe"
+        autocomplete="new-password"
+        required
+      />
+      <button type="submit">S'inscrire</button>
+    </form>
+    <script src="../js/signUp.js"></script>
+  </body>
+</html>
