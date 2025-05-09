@@ -1,14 +1,16 @@
-const signUpForm = document.querySelector("#signUpForm");
-const url = "http://localhost:4000/api/auth/register";
+import { displayMessage } from "./utils";
 
-signUpForm.addEventListener("submit", async (event) => {
+const registerForm = document.querySelector("#registerForm");
+const REGISTER_FETCH_URL = "http://localhost:4000/api/auth/register";
+
+registerForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const formData = new FormData(signUpForm);
+  const formData = new FormData(registerForm);
   const body = Object.fromEntries(formData.entries());
 
   try {
-    const response = await fetch(url, {
+    const response = await fetch(REGISTER_FETCH_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +32,3 @@ signUpForm.addEventListener("submit", async (event) => {
     displayMessage(errorMessage);
   }
 });
-
-const displayMessage = (message) => {
-  window.alert(message);
-};

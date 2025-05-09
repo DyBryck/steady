@@ -7,9 +7,12 @@ import { handleRequest } from "../utils/handleRequestUtils.js";
 
 const router = express();
 
-// Students
+// Auth
 router.post("/auth/register", handleRequest(authController.register));
 router.post("/auth/login", handleRequest(authController.login));
+
+// Students
+router.get("/me", handleRequest(studentController.getProfile));
 router.delete("/students/:id", handleRequest(studentController.deleteStudent));
 
 // Courses
@@ -17,5 +20,6 @@ router.post("/courses", handleRequest(courseController.createCourse));
 
 // CourseStudents (relation between courses & students)
 router.post("/course-students", handleRequest(courseStudentController.createCourseStudent));
+router.delete("/course-students", handleRequest(courseStudentController.deleteCourseStudent));
 
 export default router;

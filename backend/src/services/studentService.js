@@ -1,8 +1,7 @@
-import { NotFoundError } from "../errors/customErrors.js";
 import * as studentRepository from "../repositories/studentRepository.js";
 
-export const createStudent = async (data) => {
-  const studentCreated = await studentRepository.createStudent(data);
+export const createStudent = async (body) => {
+  const studentCreated = await studentRepository.createStudent(body);
 
   const student = {
     id: studentCreated.id,
@@ -19,8 +18,12 @@ export const getStudentByEmail = async (email) => {
   return studentFound;
 };
 
-export const deleteStudent = async (id) => {
-  const studentDeleted = await studentRepository.deleteStudent(id);
+export const getStudentById = async (id) => {
+  const studentFound = await studentRepository.getStudentById(id);
 
-  if (!studentDeleted) throw new NotFoundError("Étudiant introuvable");
+  return studentFound;
+};
+
+export const deleteStudent = async (id) => {
+  await studentRepository.deleteStudent(id);
 };

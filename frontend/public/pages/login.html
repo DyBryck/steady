@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <title>Steddy - Connexion</title>
+  </head>
+  <body>
+    <form id="loginForm">
+      <label for="email" class="visually-hidden">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        placeholder="Email"
+        autocomplete="email"
+        required
+      />
+      <label for="password" class="visually-hidden">Mot de passe</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        placeholder="Mot de passe"
+        autocomplete="current-password"
+        required
+      />
+      <button type="submit">Se connecter</button>
+    </form>
+    <script type="module" src="../js/login.js"></script>
+  </body>
+</html>

@@ -11,7 +11,7 @@ export const createCourseStudent = async (req) => {
 export const deleteCourseStudent = async (req) => {
   const { studentId, courseId } = req.body;
 
-  const relationDeleted = await courseStudentService.deleteCourseStudent(studentId, courseId);
+  await courseStudentService.deleteCourseStudent(studentId, courseId);
 
-  return { message: "Désinscription au cours réussie", relationDeleted };
+  return { message: "Désinscription au cours réussie" };
 };

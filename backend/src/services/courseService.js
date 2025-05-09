@@ -5,3 +5,9 @@ export const createCourse = async (courseName) => {
 
   return courseCreated;
 };
+
+export const getCourseById = async (courseId) => {
+  const courseFound = await courseRepository.getCourseById(courseId);
+
+  return courseFound;
+};

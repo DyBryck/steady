@@ -1,11 +1,15 @@
 import * as authService from "../services/authService.js";
 import * as studentService from "../services/studentService.js";
 import { hashPassword } from "../utils/passwordUtils.js";
+import { emailSchema } from "../validations/commonValidations.js";
+import { registerStudentSchema, validateData } from "../validations/validations.js";
 
 export const register = async (req) => {
-  const hashedPassword = await hashPassword(req.body.password);
+  const data = validateData(registerStudentSchema, req.body);
 
-  const body = { ...req.body, password: hashedPassword };
+  const hashedPassword = await hashPassword(data.password);
+
+  const body = { ...data, password: hashedPassword };
 
   const studentCreated = await studentService.createStudent(body);
 
@@ -13,7 +17,9 @@ export const register = async (req) => {
 };
 
 export const login = async (req) => {
-  const body = { email: req.body.email, password: req.body.password };
+  const validEmail = validateData(emailSchema, req.body.email);
+
+  const body = { email: validEmail, password: req.body.password };
 
   const canLogin = await authService.login(body);
 
