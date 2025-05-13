@@ -5,6 +5,7 @@ export const prismaErrorHandler = async (callback) => {
   try {
     return await callback();
   } catch (error) {
+    console.log(error);
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       switch (error.code) {
         case "P2002":
@@ -13,6 +14,8 @@ export const prismaErrorHandler = async (callback) => {
 
           if (error.meta?.modelName === "CourseStudent")
             throw new BadRequestError("Vous êtes déjà inscrit à ce cours");
+
+          if (error.meta?.modelName === "Course") throw new BadRequestError("Ce cours existe déjà");
 
           break;
 

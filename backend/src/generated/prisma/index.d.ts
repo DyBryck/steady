@@ -2250,16 +2250,19 @@ export namespace Prisma {
   export type CourseMinAggregateOutputType = {
     id: number | null
     name: string | null
+    date: Date | null
   }
 
   export type CourseMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    date: Date | null
   }
 
   export type CourseCountAggregateOutputType = {
     id: number
     name: number
+    date: number
     _all: number
   }
 
@@ -2275,16 +2278,19 @@ export namespace Prisma {
   export type CourseMinAggregateInputType = {
     id?: true
     name?: true
+    date?: true
   }
 
   export type CourseMaxAggregateInputType = {
     id?: true
     name?: true
+    date?: true
   }
 
   export type CourseCountAggregateInputType = {
     id?: true
     name?: true
+    date?: true
     _all?: true
   }
 
@@ -2377,6 +2383,7 @@ export namespace Prisma {
   export type CourseGroupByOutputType = {
     id: number
     name: string
+    date: Date
     _count: CourseCountAggregateOutputType | null
     _avg: CourseAvgAggregateOutputType | null
     _sum: CourseSumAggregateOutputType | null
@@ -2401,6 +2408,7 @@ export namespace Prisma {
   export type CourseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    date?: boolean
     students?: boolean | Course$studentsArgs<ExtArgs>
     _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["course"]>
@@ -2408,19 +2416,22 @@ export namespace Prisma {
   export type CourseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    date?: boolean
   }, ExtArgs["result"]["course"]>
 
   export type CourseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    date?: boolean
   }, ExtArgs["result"]["course"]>
 
   export type CourseSelectScalar = {
     id?: boolean
     name?: boolean
+    date?: boolean
   }
 
-  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["course"]>
+  export type CourseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "date", ExtArgs["result"]["course"]>
   export type CourseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     students?: boolean | Course$studentsArgs<ExtArgs>
     _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
@@ -2436,6 +2447,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
+      date: Date
     }, ExtArgs["result"]["course"]>
     composites: {}
   }
@@ -2862,6 +2874,7 @@ export namespace Prisma {
   interface CourseFieldRefs {
     readonly id: FieldRef<"Course", 'Int'>
     readonly name: FieldRef<"Course", 'String'>
+    readonly date: FieldRef<"Course", 'DateTime'>
   }
     
 
@@ -4408,7 +4421,8 @@ export namespace Prisma {
 
   export const CourseScalarFieldEnum: {
     id: 'id',
-    name: 'name'
+    name: 'name',
+    date: 'date'
   };
 
   export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
@@ -4536,27 +4550,32 @@ export namespace Prisma {
     NOT?: CourseWhereInput | CourseWhereInput[]
     id?: IntFilter<"Course"> | number
     name?: StringFilter<"Course"> | string
+    date?: DateTimeFilter<"Course"> | Date | string
     students?: CourseStudentListRelationFilter
   }
 
   export type CourseOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    date?: SortOrder
     students?: CourseStudentOrderByRelationAggregateInput
   }
 
   export type CourseWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    name_date?: CourseNameDateCompoundUniqueInput
     AND?: CourseWhereInput | CourseWhereInput[]
     OR?: CourseWhereInput[]
     NOT?: CourseWhereInput | CourseWhereInput[]
     name?: StringFilter<"Course"> | string
+    date?: DateTimeFilter<"Course"> | Date | string
     students?: CourseStudentListRelationFilter
-  }, "id">
+  }, "id" | "name_date">
 
   export type CourseOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    date?: SortOrder
     _count?: CourseCountOrderByAggregateInput
     _avg?: CourseAvgOrderByAggregateInput
     _max?: CourseMaxOrderByAggregateInput
@@ -4570,6 +4589,7 @@ export namespace Prisma {
     NOT?: CourseScalarWhereWithAggregatesInput | CourseScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Course"> | number
     name?: StringWithAggregatesFilter<"Course"> | string
+    date?: DateTimeWithAggregatesFilter<"Course"> | Date | string
   }
 
   export type CourseStudentWhereInput = {
@@ -4694,38 +4714,45 @@ export namespace Prisma {
 
   export type CourseCreateInput = {
     name: string
+    date: Date | string
     students?: CourseStudentCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUncheckedCreateInput = {
     id?: number
     name: string
+    date: Date | string
     students?: CourseStudentUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     students?: CourseStudentUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     students?: CourseStudentUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseCreateManyInput = {
     id?: number
     name: string
+    date: Date | string
   }
 
   export type CourseUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CourseUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CourseStudentCreateInput = {
@@ -4900,9 +4927,15 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type CourseNameDateCompoundUniqueInput = {
+    name: string
+    date: Date | string
+  }
+
   export type CourseCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    date?: SortOrder
   }
 
   export type CourseAvgOrderByAggregateInput = {
@@ -4912,11 +4945,13 @@ export namespace Prisma {
   export type CourseMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    date?: SortOrder
   }
 
   export type CourseMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    date?: SortOrder
   }
 
   export type CourseSumOrderByAggregateInput = {
@@ -5299,11 +5334,13 @@ export namespace Prisma {
 
   export type CourseCreateWithoutStudentsInput = {
     name: string
+    date: Date | string
   }
 
   export type CourseUncheckedCreateWithoutStudentsInput = {
     id?: number
     name: string
+    date: Date | string
   }
 
   export type CourseCreateOrConnectWithoutStudentsInput = {
@@ -5352,11 +5389,13 @@ export namespace Prisma {
 
   export type CourseUpdateWithoutStudentsInput = {
     name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CourseUncheckedUpdateWithoutStudentsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CourseStudentCreateManyStudentInput = {

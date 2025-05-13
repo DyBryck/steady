@@ -12,6 +12,7 @@ loginForm.addEventListener("submit", async (event) => {
   try {
     const response = await fetch(LOGIN_FETCH_URL, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -24,6 +25,7 @@ loginForm.addEventListener("submit", async (event) => {
       throw new Error(data.error);
     }
 
+    sessionStorage.setItem("accessToken", data.accessToken);
     displayMessage(data.message);
     window.location.replace("http://localhost:3000/profile");
   } catch (error) {

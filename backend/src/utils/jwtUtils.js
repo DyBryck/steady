@@ -1,22 +1,37 @@
 import jwt from "jsonwebtoken";
-
-const JWT_SECRET_KEY =
-  process.env.JWT_SECRET_KEY ||
-  "58e1eb811a283fdb116c98d31a52059c4f3a55bd073f8cd5876c5325aa5361d365c491430a5bd54130835d829f2743afb538bd55dbbf12ceb9e1285258ee6e5f";
-
-const ACCESS_TOKEN_EXPIRES_IN = "15m";
-const REFRESH_TOKEN_EXPIRE_IN = "7d";
-
-const testToken = jwt.sign(
-  {
-    data: "foobar",
-  },
+import {
+  ACCESS_TOKEN_EXPIRES_IN,
   JWT_SECRET_KEY,
-  { expiresIn: REFRESH_TOKEN_EXPIRE_IN },
-);
+  REFRESH_TOKEN_EXPIRE_IN,
+} from "../config/config.js";
+import { UnauthorizedError } from "../errors/customErrors.js";
 
-console.log(testToken);
+export const signAccessToken = (payload) => {
+  const signOptions = { expiresIn: ACCESS_TOKEN_EXPIRES_IN };
+  return jwt.sign(payload, JWT_SECRET_KEY, signOptions);
+};
 
-const decoded = jwt.verify(testToken, JWT_SECRET_KEY);
+export const signRefreshToken = (payload) => {
+  const signOptions = { expiresIn: REFRESH_TOKEN_EXPIRE_IN };
+  return jwt.sign(payload, JWT_SECRET_KEY, signOptions);
+};
 
-console.log(decoded);
+export const verifyToken = (token) => {
+  try {
+    const { iat, exp, ...payload } = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    return payload;
+  } catch (error) {
+    switch (error.name) {
+      case "TokenExpiredError":
+        throw new UnauthorizedError("Token expiré");
+      case "JsonWebTokenError":
+        if (error.message === "invalid signature") {
+          throw new UnauthorizedError("Signature du token invalide");
+        } else {
+          throw new UnauthorizedError("Token invalide");
+        }
+      default:
+        throw new UnauthorizedError("Erreur lors de la vérification du token");
+    }
+  }
+};

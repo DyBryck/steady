@@ -10,12 +10,15 @@ const router = express();
 // Auth
 router.post("/auth/register", handleRequest(authController.register));
 router.post("/auth/login", handleRequest(authController.login));
+router.post("/auth/refresh-token", handleRequest(authController.refreshToken));
+router.delete("/auth/logout", handleRequest(authController.logout));
 
 // Students
-router.get("/me", handleRequest(studentController.getProfile));
+router.get("/students/me", handleRequest(studentController.getProfile));
 router.delete("/students/:id", handleRequest(studentController.deleteStudent));
 
 // Courses
+router.get("/courses", handleRequest(courseController.getAllCourses));
 router.post("/courses", handleRequest(courseController.createCourse));
 
 // CourseStudents (relation between courses & students)

@@ -22,8 +22,13 @@ export const getStudentByEmail = async (email) =>
 export const getStudentById = async (id) =>
   prismaErrorHandler(() =>
     prisma.student.findUniqueOrThrow({
-      where: {
-        id,
+      where: { id },
+      include: {
+        courses: {
+          include: {
+            course: { select: { name: true, date: true } },
+          },
+        },
       },
     }),
   );

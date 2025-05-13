@@ -128,7 +128,8 @@ exports.Prisma.StudentScalarFieldEnum = {
 
 exports.Prisma.CourseScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  name: 'name',
+  date: 'date'
 };
 
 exports.Prisma.CourseStudentScalarFieldEnum = {

@@ -27,7 +27,10 @@ model Student {
 model Course {
   id       Int             @id @default(autoincrement())
   name     String
+  date     DateTime
   students CourseStudent[]
+
+  @@unique([name, date])
 }
 
 model CourseStudent {

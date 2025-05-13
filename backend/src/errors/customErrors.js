@@ -12,7 +12,7 @@ export class ValidationError extends Error {
   }
 }
 
-export class Unauthorized extends Error {
+export class UnauthorizedError extends Error {
   constructor(message) {
     super(message);
     this.name = "Unauthorized";
