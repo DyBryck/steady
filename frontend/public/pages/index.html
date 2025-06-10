@@ -4,15 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Steddy - Accueil</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/index.css" />
   </head>
   <body>
-    <h1>Bienvenue sur Steddy</h1>
-    <nav>
-      <ul>
-        <li><a href="inscription">S'inscrire</a></li>
-        <li><a href="connexion">Se connecter</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <img class="logo" src="../assets/images/blason.png" alt="" />
+      <h1>Bienvenue sur Steddy</h1>
+      <div>
+        <button id="showRegister">Inscription</button>
+        <button id="showLogin">Connexion</button>
+      </div>
+
+      <div class="form-container">
+        <form id="loginForm" class="form-panel">
+          <label for="email" class="visually-hidden">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            autocomplete="email"
+            required
+          />
+          <label for="password" class="visually-hidden">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Mot de passe"
+            autocomplete="current-password"
+            required
+          />
+          <button type="submit">Se connecter</button>
+        </form>
+        <form id="registerForm" class="form-panel">
+          <label for="firstName" class="visually-hidden">Prénom</label>
+          <input
+            id="firstName"
+            type="text"
+            name="firstName"
+            placeholder="Prénom"
+            autocomplete="given-name"
+            required
+          />
+          <label for="lastName" class="visually-hidden">Nom</label>
+          <input
+            id="lastName"
+            type="text"
+            name="lastName"
+            placeholder="Nom"
+            autocomplete="family-name"
+            required
+          />
+          <label for="email" class="visually-hidden">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            autocomplete="email"
+            required
+          />
+          <label for="password" class="visually-hidden">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Mot de passe"
+            autocomplete="new-password"
+            required
+          />
+          <button type="submit">S'inscrire</button>
+        </form>
+      </div>
+    </div>
     <script type="module" src="../js/tryToConnect.js"></script>
     <script type="module" src="../js/index.js"></script>
   </body>

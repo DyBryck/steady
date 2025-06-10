@@ -9,3 +9,8 @@
   white-space: nowrap;
   border: 0;
 }
+
+.logo {
+  height: 100px;
+  width: 100px;
+}
